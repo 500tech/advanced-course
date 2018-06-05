@@ -1,31 +1,24 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
+import * as React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
+import Home from './components/Home';
 
 import { Provider } from 'react-redux';
 import store from './redux/store';
 
-// comps
-import Navigation from './components/Navigation';
-import Feed from './components/Feed';
-
-class App extends Component {
-  render() {
-    return (
-      <Provider store={store}>
-        <Container>
-          <Navigation />
-          <Feed />
-        </Container>
-      </Provider>
-    );
-  }
-}
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100vw;
-  align-items: center;
-`;
+const App = () => (
+  <Provider store={store}>
+    <Router>
+      <React.Fragment>
+        <Switch>
+          <Route exact path="/feed" component={Home} />
+          <Route path="*" component={() => (
+            <h1>404 page</h1>
+          )} />
+        </Switch>
+      </React.Fragment>
+    </Router>
+  </Provider>
+);
 
 export default App;

@@ -1,19 +1,7 @@
 import * as AT from '../action-types';
-import { set, get } from 'lodash/fp';
+import { set } from 'lodash/fp';
 
-const initialState = {
-  0: {
-    id: 0,
-    author: 'john smith',
-    message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    comments: [
-      {
-        id: 0,
-        comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-      }
-    ]
-  }
-};
+const initialState = {};
 
 const postsReducer = (state = initialState, action) => {
   switch (action.type) {

@@ -22,7 +22,7 @@ class Feed extends React.Component {
         <PostModal isOpen={modalOpen} />
 
         <NewPost />
-        {posts.map(post => <Post key={post.id} {...post} />)}
+        {posts.reverse().map(post => <Post key={post.id} {...post} />)}
       </Container>
     );
   }
