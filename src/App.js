@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-import { Provider } from 'react-redux';
-import store from './redux/store';
-
 // comps
 import Navigation from './components/Navigation';
 import Feed from './components/Feed';
@@ -11,12 +8,10 @@ import Feed from './components/Feed';
 class App extends Component {
   render() {
     return (
-      <Provider store={store}>
-        <Container>
-          <Navigation />
-          <Feed />
-        </Container>
-      </Provider>
+      <Container>
+        <Navigation />
+        <Feed />
+      </Container>
     );
   }
 }
