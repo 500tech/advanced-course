@@ -3,7 +3,6 @@ const initialState = {
   email: null
 };
 const userReducer = (state = initialState, action) => {
-  
   return state;
 };
 

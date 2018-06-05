@@ -1,9 +1,10 @@
-import React from 'react';
+import * as React from 'react';
 import styled from 'styled-components';
 import { values, isEmpty } from 'lodash/fp';
 
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
+import { fetchPosts } from '../redux/actions/post-actions';
 
 import Post from './Post';
 import NewPost from './NewPost';
@@ -16,6 +17,7 @@ class Feed extends React.Component {
 
   componentDidMount() {
     this.setPost(this.props);
+    this.props.fetchPosts();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -87,4 +89,4 @@ const mapStateToProps = (state) => ({
   posts: values(state.posts)
 });
 
-export default withRouter(connect(mapStateToProps)(Feed));
+export default withRouter(connect(mapStateToProps, { fetchPosts })(Feed));

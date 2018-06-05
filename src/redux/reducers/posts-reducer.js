@@ -17,6 +17,8 @@ const postsReducer = (state = initialState, action) => {
       const comments = state[postId].comments;
 
       return set(`${postId}.comments`, [...comments, comment], state);
+    case AT.FETCH_POSTS.SUCCESS:
+      return action.payload.posts;
     default:
       return state;
   }

@@ -12,3 +12,12 @@ export const addComment = (postId, comment) => ({
     postId
   }
 });
+
+export const fetchPosts = () => ({
+  type: AT.API_REQUEST,
+  payload: {
+    base: AT.FETCH_POSTS,
+    url: 'https://private-fe525e-crazypixel.apiary-mock.com/posts',
+    method: 'GET'
+  }
+});
