@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Navigation from './Navigation';
+import Navigation from './common/Navigation';
 import Feed from './Feed';
 
 const Home = () => (

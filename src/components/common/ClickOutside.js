@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class WithClickOut extends React.Component {
+export default class ClickOutside extends React.Component {
   componentDidMount() {
     window.addEventListener('click', this.handleClick);
   }

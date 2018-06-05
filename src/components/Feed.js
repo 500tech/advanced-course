@@ -30,6 +30,21 @@ class Feed extends React.Component {
     });
   }
 
+  postRenderer(post, onClick) {
+    if (post.imageSrc) {
+      return (
+        <React.Fragment>
+          <PostText onClick={onClick}>{post.message}</PostText>
+          <PostImage src={post.imageSrc} />
+        </React.Fragment>
+      );
+    }
+
+    return (
+      <PostText onClick={onClick}>{post.message}</PostText>
+    );
+  }
+
   render() {
     const { selectedPost } = this.state;
     const { posts } = this.props;
@@ -39,7 +54,7 @@ class Feed extends React.Component {
         <PostModal isOpen={!isEmpty(selectedPost)} />
 
         <NewPost />
-        {posts.map(post => <Post key={post.id} {...post} />)}
+        {posts.map(post => <Post key={post.id} {...post} contentRenderer={this.postRenderer} />)}
       </Container>
     );
   }
@@ -51,6 +66,21 @@ const Container = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+`;
+
+const PostText = styled.div`
+  color: #888;
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 20px;
+  margin-bottom: 20px;
+`;
+
+const PostImage = styled.div`
+  width: 100%;
+  min-height: 300px;
+  background: url(${({ src }) => src}) no-repeat;
+  background-size: cover;
 `;
 
 const mapStateToProps = (state) => ({

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import WithClickOutside from './withClickOut';
+import ClickOutside from './ClickOutside';
 
 class Menu extends React.Component {
   state = {
@@ -27,14 +27,14 @@ class Menu extends React.Component {
     const { isOpen } = this.state;
 
     return (
-      <WithClickOutside onClickOutside={this.handleClickOutside}>
+      <ClickOutside onClickOutside={this.handleClickOutside}>
         <Container>
         <span onClick={() => this.setState({ isOpen: !this.state.isOpen })}>
           {children}
         </span>
           {isOpen && this.menuRenderer()}
         </Container>
-      </WithClickOutside>
+      </ClickOutside>
     );
   }
 }

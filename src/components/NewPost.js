@@ -2,8 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { addPost } from '../redux/actions/post-actions';
+import Toggle from './common/Toggle';
 
 class NewPost extends React.Component {
+  state = {
+    postImage: false
+  };
+
   uuid() {
     const s4 = () => Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
 
@@ -18,6 +23,10 @@ class NewPost extends React.Component {
       comments: []
     };
 
+    if (this.state.postImage) {
+      data.imageSrc = 'https://images.techhive.com/images/article/2017/02/oculus-rift-100708041-large.jpg';
+    }
+
     this.props.addPost(data);
     this.input.value = '';
   };
@@ -28,6 +37,10 @@ class NewPost extends React.Component {
         <Title>new post</Title>
         <Input innerRef={el => this.input = el} placeholder="add new post" />
         <Button onClick={this.handleClick}>publish</Button>
+        <PostType>
+          <div>post with image</div>
+          <Toggle onChange={(postImage) => this.setState({ postImage })} />
+        </PostType>
       </Container>
     );
   }
@@ -36,6 +49,7 @@ class NewPost extends React.Component {
 const Container = styled.div`
   width: 100%;
   min-height: 100px;
+  position: relative;
   box-sizing: border-box;
   border-radius: 4px;
   border: 1px solid #eaeaea;
@@ -86,6 +100,22 @@ const Button = styled.div`
   font-size: 14px;
   align-self: flex-end;
   cursor: pointer;
+`;
+
+const PostType = styled.div`
+  width: 160px;
+  position: absolute;
+  top: 20px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  height: 30px;
+  
+  div {
+    font-size: 12px;
+    color: #444;
+    text-transform: capitalize;
+  }
 `;
 
 export default connect(undefined, { addPost })(NewPost);

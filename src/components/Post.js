@@ -3,15 +3,16 @@ import styled from 'styled-components';
 import Comments from './Comments';
 
 import { withRouter } from 'react-router';
+import withSpinner from './common/withSpinner';
 
-const Post = ({ id, author, message, comments, history }) => (
+const Post = (props) => (
   <Container>
     <Header>
       <Avatar />
-      <Name>{author}</Name>
+      <Name>{props.author}</Name>
     </Header>
-    <Content onClick={() => history.push(`/feed/${id}`)}>{message}</Content>
-    <Comments data={comments} postId={id} />
+    {props.contentRenderer(props, () => props.history.push(`/feed/${props.id}`))}
+    <Comments data={props.comments} postId={props.id} />
   </Container>
 );
 
@@ -27,14 +28,6 @@ const Container = styled.div`
   box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.1);
   display: flex;
   flex-direction: column;
-`;
-
-const Content = styled.div`
-  color: #888;
-  font-size: 13px;
-  font-weight: 300;
-  line-height: 20px;
-  margin-bottom: 20px;
 `;
 
 const Header = styled.div`
@@ -58,4 +51,4 @@ const Name = styled.div`
   text-transform: capitalize;
 `;
 
-export default withRouter(Post);
+export default withSpinner(withRouter(Post));
