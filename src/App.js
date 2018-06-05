@@ -11,7 +11,7 @@ const App = () => (
     <Router>
       <React.Fragment>
         <Switch>
-          <Route exact path="/feed" component={Home} />
+          <Route exact path="/feed/:id?" component={Home} />
           <Route path="*" component={() => (
             <h1>404 page</h1>
           )} />

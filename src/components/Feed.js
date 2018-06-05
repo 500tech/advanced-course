@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { values } from 'lodash/fp';
+import { values, isEmpty, find } from 'lodash/fp';
 
+import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 
 import Post from './Post';
@@ -10,19 +11,35 @@ import PostModal from './PostModal';
 
 class Feed extends React.Component {
   state = {
-    modalOpen: false
+    selectedPost: null
   };
 
+  componentDidMount() {
+    this.setPost(this.props);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setPost(nextProps);
+  }
+
+  setPost(props) {
+    const { id } = props.match.params;
+
+    this.setState({
+      selectedPost: id
+    });
+  }
+
   render() {
-    const { modalOpen } = this.state;
+    const { selectedPost } = this.state;
     const { posts } = this.props;
 
     return (
       <Container>
-        <PostModal isOpen={modalOpen} />
+        <PostModal isOpen={!isEmpty(selectedPost)} />
 
         <NewPost />
-        {posts.reverse().map(post => <Post key={post.id} {...post} />)}
+        {posts.map(post => <Post key={post.id} {...post} />)}
       </Container>
     );
   }
@@ -40,4 +57,4 @@ const mapStateToProps = (state) => ({
   posts: values(state.posts)
 });
 
-export default connect(mapStateToProps)(Feed);
+export default withRouter(connect(mapStateToProps)(Feed));

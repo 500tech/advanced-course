@@ -2,13 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 import Comments from './Comments';
 
-const Post = ({ id, author, message, comments }) => (
+import { withRouter } from 'react-router';
+
+const Post = ({ id, author, message, comments, history }) => (
   <Container>
     <Header>
       <Avatar />
       <Name>{author}</Name>
     </Header>
-    <Content>{message}</Content>
+    <Content onClick={() => history.push(`/feed/${id}`)}>{message}</Content>
     <Comments data={comments} postId={id} />
   </Container>
 );
@@ -56,4 +58,4 @@ const Name = styled.div`
   text-transform: capitalize;
 `;
 
-export default Post;
+export default withRouter(Post);

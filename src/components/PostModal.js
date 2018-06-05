@@ -1,13 +1,22 @@
 import React from 'react';
+import { withRouter } from 'react-router';
 import styled, { css } from 'styled-components';
+import { connect } from 'react-redux';
+import { get } from 'lodash/fp';
 
-const PostModal = ({ isOpen }) => (
-  <Overlay isOpen={isOpen}>
-    <Content isOpen={isOpen}>
+const PostModal = ({ isOpen, history, post }) => {
+  if (!post) {
+    return null;
+  }
 
-    </Content>
-  </Overlay>
-);
+  return (
+    <Overlay isOpen={isOpen} onClick={() => history.push('/feed')}>
+      <Content isOpen={isOpen}>
+        {post.message}
+      </Content>
+    </Overlay>
+  );
+};
 
 const Overlay = styled.div`
   position: fixed;
@@ -43,4 +52,12 @@ const Content = styled.div`
   box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.1);
 `;
 
-export default PostModal;
+const mapStateToProps = (state, ownProps) => {
+  const id = ownProps.match.params.id;
+
+  return {
+    post: state.posts[id]
+  };
+};
+
+export default withRouter(connect(mapStateToProps)(PostModal));
