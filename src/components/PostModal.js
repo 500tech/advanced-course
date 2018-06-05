@@ -2,7 +2,6 @@ import React from 'react';
 import { withRouter } from 'react-router';
 import styled, { css } from 'styled-components';
 import { connect } from 'react-redux';
-import { get } from 'lodash/fp';
 
 const PostModal = ({ isOpen, history, post }) => {
   if (!post) {

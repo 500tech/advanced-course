@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { values, isEmpty, find } from 'lodash/fp';
+import { values, isEmpty } from 'lodash/fp';
 
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';

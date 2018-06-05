@@ -1,10 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import Menu from './Menu';
+
 const Navigation = () => (
   <Container>
     <Logo>advanced course</Logo>
-    <User>hello guest</User>
+    <Menu><User>hello guest</User></Menu>
   </Container>
 );
 
@@ -33,4 +35,5 @@ const User = styled.div`
   color: #fff;
   text-transform: capitalize;
   font-weight: 300;
+  cursor: pointer;
 `;
