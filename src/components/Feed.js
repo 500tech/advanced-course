@@ -4,7 +4,7 @@ import { values, isEmpty } from 'lodash/fp';
 
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
-import { fetchPosts } from '../redux/actions/post-actions';
+import { fetchPosts } from '../redux/actions/post.actions';
 
 import Post from './Post';
 import NewPost from './NewPost';

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { addComment } from '../redux/actions/post-actions';
+import { addComment } from '../redux/actions/post.actions';
 
 class Comments extends React.Component {
   uuid() {

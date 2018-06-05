@@ -1,4 +1,4 @@
-import * as AT from '../action-types';
+import * as AT from '../actionTypes';
 
 export const addPost = (post) => ({
   type: AT.ADD_POST,

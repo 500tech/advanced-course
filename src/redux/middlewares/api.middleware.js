@@ -1,4 +1,4 @@
-import * as AT from '../action-types';
+import * as AT from '../actionTypes';
 
 const api = ({ dispatch }) => next => action => {
   if (action.type !== AT.API_REQUEST) {

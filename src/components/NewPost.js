@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { addPost } from '../redux/actions/post-actions';
+import { addPost } from '../redux/actions/post.actions';
 import Toggle from './common/Toggle';
 
 class NewPost extends React.Component {

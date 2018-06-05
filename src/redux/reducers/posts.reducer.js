@@ -1,4 +1,4 @@
-import * as AT from '../action-types';
+import * as AT from '../actionTypes';
 import { set } from 'lodash/fp';
 
 const initialState = {};
