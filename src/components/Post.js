@@ -2,18 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import Comments from './Comments';
 
-const Post = () => (
+const Post = ({ id, author, message, comments }) => (
   <Container>
     <Header>
       <Avatar />
-      <Name>john smith</Name>
+      <Name>{author}</Name>
     </Header>
-    <Content>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-      magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-      consequat.
-    </Content>
-    <Comments />
+    <Content>{message}</Content>
+    <Comments data={comments} postId={id} />
   </Container>
 );
 

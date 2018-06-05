@@ -1,13 +1,33 @@
 import React from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { addPost } from '../redux/actions/post-actions';
 
-export default class NewPost extends React.Component {
+class NewPost extends React.Component {
+  uuid() {
+    const s4 = () => Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+
+    return `${s4()}${s4()}-${s4()}-${s4()}-${s4()}-${s4()}${s4()}${s4()}`;
+  }
+
+  handleClick = () => {
+    const data = {
+      id: this.uuid(),
+      author: 'john smith',
+      message: this.input.value,
+      comments: []
+    };
+
+    this.props.addPost(data);
+    this.input.value = '';
+  };
+
   render() {
     return (
       <Container>
         <Title>new post</Title>
-        <Input />
-        <Button>publish</Button>
+        <Input innerRef={el => this.input = el} placeholder="add new post" />
+        <Button onClick={this.handleClick}>publish</Button>
       </Container>
     );
   }
@@ -65,4 +85,7 @@ const Button = styled.div`
   text-transform: uppercase;
   font-size: 14px;
   align-self: flex-end;
+  cursor: pointer;
 `;
+
+export default connect(undefined, { addPost })(NewPost);
