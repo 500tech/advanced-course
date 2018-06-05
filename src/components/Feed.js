@@ -1,10 +1,12 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { values, isEmpty } from 'lodash/fp';
+import { isEmpty } from 'lodash/fp';
 
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { fetchPosts } from '../redux/actions/post.actions';
+
+import { feedsSelector } from '../redux/selectors/posts.selectors';
 
 import Post from './Post';
 import NewPost from './NewPost';
@@ -86,7 +88,7 @@ const PostImage = styled.div`
 `;
 
 const mapStateToProps = (state) => ({
-  posts: values(state.posts)
+  posts: feedsSelector(state)
 });
 
 export default withRouter(connect(mapStateToProps, { fetchPosts })(Feed));

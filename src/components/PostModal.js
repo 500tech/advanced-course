@@ -2,6 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router';
 import styled, { css } from 'styled-components';
 import { connect } from 'react-redux';
+import { postSelectorFactory } from '../redux/selectors/posts.selectors';
 
 const PostModal = ({ isOpen, history, post }) => {
   if (!post) {
@@ -19,6 +20,7 @@ const PostModal = ({ isOpen, history, post }) => {
 
 const Overlay = styled.div`
   position: fixed;
+  z-index: 999;
   top: 0;
   left: 0;
   width: 100vw;
@@ -55,7 +57,7 @@ const mapStateToProps = (state, ownProps) => {
   const id = ownProps.match.params.id;
 
   return {
-    post: state.posts[id]
+    post: postSelectorFactory(state, id)
   };
 };
 
